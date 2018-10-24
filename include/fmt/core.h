@@ -217,6 +217,8 @@ FMT_CONSTEXPR size_t length(const Char *s) {
 }
 #if FMT_GCC_VERSION && !defined(__arm__)
 FMT_CONSTEXPR size_t length(const char *s) { return std::strlen(s); }
+#elif defined(__clang__)
+FMT_CONSTEXPR size_t length(const char *s) { return __builtin_strlen(s); }
 #endif
 
 #if FMT_GCC_VERSION && FMT_GCC_VERSION < 405
